@@ -1,14 +1,15 @@
 // Initialize the array of cells
 var cells = [],
-	cellWidth = 4,
-	ruleset = [0,1,0,1,1,0,1,0];
+	cellWidth = 10,
+	ruleset = [0,1,0,1,1,0,1,0],
+	defaultCanvasHeight = 400;
 
 function setup() {
-	var canvas = createCanvas(720, 400);
+	let canvasHeight = (defaultCanvasHeight % cellWidth == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellWidth)
+	let canvas = createCanvas(displayWidth-32, canvasHeight);
 	canvas.parent('canvasContainer');
-	// Fill the cells array and define the initial state
-	initCells(99);
-	// cellWidth = (width - 2) / cells[0].length;
+	// Fill the cells array with the first generations
+	initCells(Math.floor(width / cellWidth));
 	noStroke();
 	frameRate(10);
 }
