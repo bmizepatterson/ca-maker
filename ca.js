@@ -4,7 +4,8 @@ var cells = [],
 	ruleset = [0,1,0,1,1,0,1,0];
 
 function setup() {
-	createCanvas(720, 400);
+	var canvas = createCanvas(720, 400);
+	canvas.parent('canvasContainer');
 	// Fill the cells array and define the initial state
 	initCells(99);
 	// cellWidth = (width - 2) / cells[0].length;

@@ -1,0 +1,14 @@
+html, body {
+	margin:0;
+	padding:0;
+	font-family:Verdana,sans-serif;
+	font-size:16px;
+}
+.container {
+	padding:0 16px;
+}
+.p5Canvas {
+	display:block;
+	margin:auto;
+	border:1px solid #DDD;
+}
