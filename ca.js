@@ -24,7 +24,8 @@ function draw() {
 			rect(i * cellWidth, g * cellWidth, cellWidth, cellWidth);
 		}
 	}
-	if (cells.length < 100) beget();
+	if (cells.length > height / cellWidth) cells.shift();
+	beget();
 }
 
 function beget() {
