@@ -3,6 +3,7 @@ html, body {
 	padding:0;
 	font-family:Verdana,sans-serif;
 	font-size:16px;
+	background-color:#EEE;
 }
 .container {
 	padding:0 16px;
@@ -11,4 +12,5 @@ html, body {
 	display:block;
 	margin:auto;
 	border:1px solid #DDD;
+	background-color:white;
 }
