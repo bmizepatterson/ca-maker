@@ -8,7 +8,8 @@ function setup() {
 	// Fill the cells array and define the initial state
 	initCells(99);
 	// cellWidth = (width - 2) / cells[0].length;
-	stroke(0);
+	noStroke();
+	frameRate(10);
 }
 
 function draw() {
