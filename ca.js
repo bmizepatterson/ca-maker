@@ -1,12 +1,14 @@
 // Initialize the array of cells
 var cells = [],
-	cellWidth;
+	cellWidth = 30,
+	ruleset = [0,1,0,1,1,0,1,0],
+	generations = 10;
 
 function setup() {
 	createCanvas(720, 400);
 	// Fill the cells array and define the initial state
-	cells = [0, 0, 0, 0, 1, 0, 0, 0, 0];
-	cellWidth = (width - 2) / cells.length;
+	cells = [[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]];
+	// cellWidth = (width - 2) / cells[0].length;
 	stroke(0);
 }
 
