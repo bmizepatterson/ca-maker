@@ -6,7 +6,7 @@ var cells = [],
 function setup() {
 	createCanvas(720, 400);
 	// Fill the cells array and define the initial state
-	cells = [[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]];
+	initCells(99);
 	// cellWidth = (width - 2) / cells[0].length;
 	stroke(0);
 }
@@ -46,4 +46,15 @@ function getState(a, b, c) {
 	rule = parseInt(rule, 2);
 	// The decimal number happens to be the index of the state we need!
 	return ruleset[rule];
+}
+
+function initCells(n) {
+	// Fills the cells[] array with a first generation of n cells
+	// All first generations cells are set to state 0 by default, except the middle one.
+	let middle = Math.floor(n/2);
+	let firstGeneration = [];
+	for (let i = 0; i < n; i ++) {
+		firstGeneration[i] = (i == middle) ? 1 : 0;
+	}
+	cells.push(firstGeneration);
 }
