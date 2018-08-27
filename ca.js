@@ -1,8 +1,7 @@
 // Initialize the array of cells
 var cells = [],
-	cellWidth = 30,
-	ruleset = [0,1,0,1,1,0,1,0],
-	generations = 10;
+	cellWidth = 4,
+	ruleset = [0,1,0,1,1,0,1,0];
 
 function setup() {
 	createCanvas(720, 400);
@@ -22,7 +21,7 @@ function draw() {
 			rect(i * cellWidth, g * cellWidth, cellWidth, cellWidth);
 		}
 	}
-	if (cells.length < generations) beget();
+	if (cells.length < 100) beget();
 }
 
 function beget() {
