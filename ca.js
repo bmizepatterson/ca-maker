@@ -85,10 +85,34 @@ function step() {
 	redraw();
 }
 
+function updateRuleset() {
+	// Convert the decimal rule # to an array of its digits in binary in reverse
+	let newRule = parseInt(document.getElementById('ruleset').value);
+	// Convert to binary
+	newRule = newRule.toString(2);
+	// Pad with 0's
+	newRule = newRule.padStart(8, '0');
+	// Reverse it
+	newRule = newRule.split("");
+	ruleset = newRule.reverse();
+	reset();
+	document.getElementById('rs').innerHTML = newRule;
+}
+
 function initDoc() {
 	// Add event listeners
 	document.getElementById('step').addEventListener('click', step);
 	document.getElementById('reset').addEventListener('click', reset);
 	document.getElementById('pause').addEventListener('click', noLoop);
 	document.getElementById('resume').addEventListener('click', loop);
+	// Populate ruleset select
+	let ruleset = document.getElementById('ruleset');
+	for (let i = 0; i < 256; i++) {
+		let option = document.createElement('OPTION');
+		option.appendChild(document.createTextNode(`Rule ${i}`));
+		option.value = i;
+		ruleset.appendChild(option);
+	}
+	ruleset.value = 90;
+	ruleset.addEventListener('change', updateRuleset);
 }

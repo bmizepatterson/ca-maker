@@ -15,13 +15,16 @@
 		<p>CA Maker allows you to build and customize your own cellular automata. CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
 		<div class="settings-group">
 			<div class="setting-wrapper">
-				<p>States: 2 (black or white)</p>
+				<span>States: 2 (black or white)</span>
 			</div>
 			<div class="setting-wrapper">
-				<p>Rule set: Rule 90</p>
+				<label for="ruleset">Rule set:</label>
+				<select name="ruleset" id="ruleset">
+				</select>
+				<span id="rs"></span>
 			</div>
 			<div class="setting-wrapper">
-				<p>Population: <span id="population"></span></p>
+				<span>Population: <span id="population"></span></span>
 			</div>
 		</div>
 
