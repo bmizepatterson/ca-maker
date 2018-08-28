@@ -17,7 +17,7 @@ function setup() {
 	// Fill the cells array with the first generation
 	initCells();
 	frameRate(10);
-	noStroke();
+	stroke(230);
 }
 
 function draw() {
