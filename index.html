@@ -16,7 +16,11 @@
 		<h2>Settings</h2>
 		<p>States: 2 (black or white)</p>
 		<p>Rule set: Rule 90</p>
-		<p>Edges: Skip</p>
+		<p>Population: <span id="population"></span></p>
+		<button id="beget" onclick="step()">Beget</button>
+		<button id="reset" onclick="reset()">Reset</button>
+		<button id="pause" onclick="noLoop()">Pause</button>
+		<button id="resume" onclick="loop()">Resume</button>
 
 		<div id="canvasContainer"></div>
 	</div>

@@ -1,38 +1,49 @@
 // Initialize the array of cells
 var cells = [],
-	cellWidth = 10,
+	cellSize = 10,
 	ruleset = [0,1,0,1,1,0,1,0],
-	defaultCanvasHeight = 400;
+	bufferWidth;
 
 function setup() {
-	let canvasHeight = (defaultCanvasHeight % cellWidth == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellWidth)
-	let canvas = createCanvas(displayWidth-32, canvasHeight);
+	// Canvas dimensions should be evenly divisible by the cell size.
+	let defaultCanvasHeight = 400;
+	let canvasHeight = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize)
+	let containerW = document.getElementById('canvasContainer').clientWidth;
+	bufferWidth = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
+	// Subtract two cell-widths from the canvas, since we don't draw the first or last cell in each generation
+	canvasWidth = bufferWidth - 2 * cellSize;
+	let canvas = createCanvas(canvasWidth, canvasHeight);
 	canvas.parent('canvasContainer');
-	// Fill the cells array with the first generations
-	initCells(Math.floor(width / cellWidth));
-	noStroke();
+	// Fill the cells array with the first generation
+	initCells();
 	frameRate(10);
+	noStroke();
 }
 
 function draw() {
 	for (let g = 0; g < cells.length; g++) {
 		// Iterate over the cell generations
-		for (let i = 0; i < cells[g].length; i++) {
-			// Iterate over the cells in this generation
+		for (let i = 1; i < cells[g].length - 1; i++) {
+			// Iterate over the cells in this generation.
+			// Skip the first and last cell in each generation.
 			if (cells[g][i] == 0) fill(255);
 			else fill(0);
-			rect(i * cellWidth, g * cellWidth, cellWidth, cellWidth);
+			rect((i-1) * cellSize, g * cellSize, cellSize, cellSize);
 		}
 	}
-	if (cells.length > height / cellWidth) cells.shift();
+	if (cells.length >= height / cellSize) cells.shift();
 	beget();
 }
 
 function beget() {
 	// "Beget" a new generation of cells
+	if (!cells.length) {
+		initCells();
+		return;
+	}
 	let currentGen = cells[cells.length - 1];
 	let nextGen = [];
-	// Skip the edge cases for now
+	// Skip edge cases (we don't draw them)
 	nextGen[0] = nextGen[currentGen.length - 1] = 0;
 	for (let i = 1; i < currentGen.length - 1; i++) {
 		let left   = currentGen[i - 1];
@@ -44,7 +55,7 @@ function beget() {
 }
 
 function getState(a, b, c) {
-	// Combine the three digits into one 3-bit number
+	// Combine the three digits into one 3-bit number (string)
 	let rule = "" + a + b + c;
 	// Convert to decimal
 	rule = parseInt(rule, 2);
@@ -52,13 +63,25 @@ function getState(a, b, c) {
 	return ruleset[rule];
 }
 
-function initCells(n) {
-	// Fills the cells[] array with a first generation of n cells
+function initCells() {
+	// Fills the cells[] array with a first generation of cells
 	// All first generations cells are set to state 0 by default, except the middle one.
-	let middle = Math.floor(n/2);
+	let population = Math.floor(bufferWidth / cellSize);
+	document.getElementById('population').innerHTML = population;
+	let middle = Math.floor(population/2);
 	let firstGeneration = [];
-	for (let i = 0; i < n; i ++) {
+	for (let i = 0; i < population; i++) {
 		firstGeneration[i] = (i == middle) ? 1 : 0;
 	}
 	cells.push(firstGeneration);
+}
+
+function reset() {
+	cells = [];
+	clear();
+}
+
+function step() {
+	beget();
+	redraw();
 }
