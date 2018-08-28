@@ -22,6 +22,13 @@ button[disabled]:hover {
 	background:white;
 	color:graytext;
 }
+select {
+	font-family: inherit;
+	font-size: inherit;
+}
+#rs {
+	font-size:14px;
+}
 .center {
 	text-align:center;
 }
