@@ -5,6 +5,22 @@ html, body {
 	font-size:16px;
 	background-color:#EEE;
 }
+button {
+	background:white;
+	outline:none;
+	border:1px solid black;
+	border-radius: 2px;
+	font-size:inherit;
+	padding:4px 8px;
+	margin:4px;
+}
+button:hover {
+	background:black;
+	color:white;
+}
+.center {
+	text-align:center;
+}
 .container {
 	padding:0 16px;
 }
@@ -13,4 +29,16 @@ html, body {
 	margin:auto;
 	border:1px solid #DDD;
 	background-color:white;
+}
+.settings-group {
+	margin-bottom:16px;
+}
+.settings-group:before, .settings-group:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+.setting-wrapper {
+	float:left;
+	width: 300px;
 }

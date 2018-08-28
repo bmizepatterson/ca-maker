@@ -14,13 +14,23 @@
 		<h1>CA Maker</h1>
 		<p>CA Maker allows you to build and customize your own cellular automata. CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
 		<h2>Settings</h2>
-		<p>States: 2 (black or white)</p>
-		<p>Rule set: Rule 90</p>
-		<p>Population: <span id="population"></span></p>
-		<button id="beget" onclick="step()">Beget</button>
-		<button id="reset" onclick="reset()">Reset</button>
-		<button id="pause" onclick="noLoop()">Pause</button>
-		<button id="resume" onclick="loop()">Resume</button>
+		<div class="settings-group">
+			<div class="setting-wrapper">
+				<p>States: 2 (black or white)</p>
+			</div>
+			<div class="setting-wrapper">
+				<p>Rule set: Rule 90</p>
+			</div>
+			<div class="setting-wrapper">
+				<p>Population: <span id="population"></span></p>
+			</div>
+		</div>
+		<div class="center">
+			<button id="step" onclick="step()">Next Generation</button>
+			<button id="reset" onclick="reset()">Reset</button>
+			<button id="pause" onclick="noLoop()">Pause</button>
+			<button id="resume" onclick="loop()">Resume</button>
+		</div>
 
 		<div id="canvasContainer"></div>
 	</div>
