@@ -45,4 +45,5 @@ button[disabled]:hover {
 .setting-wrapper {
 	float:left;
 	width: 300px;
+	margin:8px;
 }
