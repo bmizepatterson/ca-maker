@@ -18,6 +18,10 @@ button:hover {
 	background:black;
 	color:white;
 }
+button[disabled]:hover {
+	background:white;
+	color:graytext;
+}
 .center {
 	text-align:center;
 }
