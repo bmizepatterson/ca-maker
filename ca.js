@@ -79,10 +79,32 @@ function initCells() {
 function reset() {
 	cells = [];
 	clear();
+	loop();
+	document.getElementById('pause').disabled = false;
+	document.getElementById('resume').disabled = true;
+	document.getElementById('step').disabled = true;
 }
 
 function step() {
 	redraw();
+}
+
+function pause() {
+	noLoop();
+	document.getElementById('pause').disabled = true;
+	document.getElementById('resume').disabled = false;
+	document.getElementById('step').disabled = false;
+}
+
+function resume() {
+	loop();
+	document.getElementById('pause').disabled = false;
+	document.getElementById('resume').disabled = true;
+	document.getElementById('step').disabled = true;
+}
+
+function saveCA() {
+	saveCanvas('myAutomaton', 'png');
 }
 
 function updateRuleset() {
@@ -103,8 +125,9 @@ function initDoc() {
 	// Add event listeners
 	document.getElementById('step').addEventListener('click', step);
 	document.getElementById('reset').addEventListener('click', reset);
-	document.getElementById('pause').addEventListener('click', noLoop);
-	document.getElementById('resume').addEventListener('click', loop);
+	document.getElementById('pause').addEventListener('click', pause);
+	document.getElementById('resume').addEventListener('click', resume);
+	document.getElementById('saveCA').addEventListener('click', saveCA);
 	// Populate ruleset select
 	let ruleset = document.getElementById('ruleset');
 	for (let i = 0; i < 256; i++) {
