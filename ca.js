@@ -82,6 +82,13 @@ function reset() {
 }
 
 function step() {
-	beget();
 	redraw();
+}
+
+function initDoc() {
+	// Add event listeners
+	document.getElementById('step').addEventListener('click', step);
+	document.getElementById('reset').addEventListener('click', reset);
+	document.getElementById('pause').addEventListener('click', noLoop);
+	document.getElementById('resume').addEventListener('click', loop);
 }
