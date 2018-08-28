@@ -122,7 +122,7 @@ function updateRuleset() {
 }
 
 function updateFrameRate() {
-	frameRate(parseInt(document.getElementById('frameRate').value));
+	frameRate(parseInt(document.getElementById('frSetting').value));
 }
 
 function initDoc() {
@@ -132,7 +132,7 @@ function initDoc() {
 	document.getElementById('pause').addEventListener('click', pause);
 	document.getElementById('resume').addEventListener('click', resume);
 	document.getElementById('saveCA').addEventListener('click', saveCA);
-	document.getElementById('frameRate').addEventListener('change', updateFrameRate);
+	document.getElementById('frSetting').addEventListener('change', updateFrameRate);
 	// Populate ruleset select
 	let rsSelect = document.getElementById('ruleset');
 	for (let i = 0; i < 256; i++) {
