@@ -12,7 +12,8 @@
 <body onload="initDoc()">
 	<div class="container">
 		<h1>CA Maker</h1>
-		<p>CA Maker allows you to build and customize your own cellular automata. CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
+		<p>CA Maker allows you to build and simulate your own <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton" target="_blank">elementary cellular automaton</a>. A cellular automaton (CA) is a row of cells in a particular state (in this case, black or white). Over time, the state of a cell may change, depending on the state of its neighbors, according to a set of rules.</p>
+		<p>There are 256 ways for a CA such as this one to behave, and they're numbered 0-255. Learn more about <a href="https://en.wikipedia.org/wiki/Rule_90" target="_blank">cellular automata rules</a>, or change the rule by making a selection below.</p>
 		<div class="settings-group">
 			<div class="setting-wrapper">
 				<span>States: 2 (black or white)</span>
@@ -36,6 +37,8 @@
 			<button id="resume" disabled>Resume</button>
 			<button id="saveCA">Save as image</button>
 		</div>
+		<p>CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
+		<p>To learn more, check out <a href="https://natureofcode.com/book/" target="_blank">The Nature of Code</a>, by Daniel Shiffman.</p>
 	</div>
 </body>
 </html>
