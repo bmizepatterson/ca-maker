@@ -121,6 +121,10 @@ function updateRuleset() {
 	document.getElementById('rs').innerHTML = newRule;
 }
 
+function updateFrameRate() {
+	frameRate(parseInt(document.getElementById('frameRate').value));
+}
+
 function initDoc() {
 	// Add event listeners
 	document.getElementById('step').addEventListener('click', step);
@@ -128,6 +132,7 @@ function initDoc() {
 	document.getElementById('pause').addEventListener('click', pause);
 	document.getElementById('resume').addEventListener('click', resume);
 	document.getElementById('saveCA').addEventListener('click', saveCA);
+	document.getElementById('frameRate').addEventListener('change', updateFrameRate);
 	// Populate ruleset select
 	let ruleset = document.getElementById('ruleset');
 	for (let i = 0; i < 256; i++) {
