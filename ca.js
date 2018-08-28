@@ -134,13 +134,14 @@ function initDoc() {
 	document.getElementById('saveCA').addEventListener('click', saveCA);
 	document.getElementById('frameRate').addEventListener('change', updateFrameRate);
 	// Populate ruleset select
-	let ruleset = document.getElementById('ruleset');
+	let rsSelect = document.getElementById('ruleset');
 	for (let i = 0; i < 256; i++) {
 		let option = document.createElement('OPTION');
 		option.appendChild(document.createTextNode(`Rule ${i}`));
 		option.value = i;
-		ruleset.appendChild(option);
+		rsSelect.appendChild(option);
 	}
-	ruleset.value = 90;
-	ruleset.addEventListener('change', updateRuleset);
+	rsSelect.value = 90;
+	rsSelect.addEventListener('change', updateRuleset);
+	document.getElementById('rs').innerHTML = ruleset;
 }
