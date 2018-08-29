@@ -42,15 +42,11 @@ select {
 	background-color:white;
 }
 .settings-group {
-	margin-bottom:16px;
+	margin: 24px 0;
+	padding:0;
 }
-.settings-group:before, .settings-group:after {
-	content:"";
-	display:table;
-	clear:both;
-}
-.setting-wrapper {
-	float:left;
-	width: 300px;
-	margin:8px;
+.settings-group li {
+	display:inline;
+	margin:0;
+	padding-right:16px;
 }
