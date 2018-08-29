@@ -32,8 +32,6 @@ function beget() {
 	// "Beget" a new generation of cells
 	let currentGen = cells[cells.length - 1];
 	let nextGen = [];
-	// Skip edge cases (we don't draw them)
-	// nextGen[0] = nextGen[currentGen.length - 1] = 0;
 	for (let i = 0; i < currentGen.length; i++) {
 		let left   = (i == 0) ? currentGen[currentGen.length - 1] : currentGen[i - 1];
 		let middle = currentGen[i];
