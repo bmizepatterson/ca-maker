@@ -11,24 +11,24 @@ function setup() {
 	let containerW = document.getElementById('canvasContainer').clientWidth;
 	bufferWidth = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
 	// Subtract two cell-widths from the canvas, since we don't draw the first or last cell in each generation
-	canvasWidth = bufferWidth - 2 * cellSize;
-	let canvas = createCanvas(canvasWidth, canvasHeight);
+	// canvasWidth = bufferWidth - 2 * cellSize;
+	let canvas = createCanvas(bufferWidth, canvasHeight);
 	canvas.parent('canvasContainer');
 	// Fill the cells array with the first generation
 	initCells();
 	frameRate(10);
+	// noStroke();
 	stroke(230);
 }
 
 function draw() {
 	for (let g = 0; g < cells.length; g++) {
 		// Iterate over the cell generations
-		for (let i = 1; i < cells[g].length - 1; i++) {
+		for (let i = 0; i < cells[g].length; i++) {
 			// Iterate over the cells in this generation.
-			// Skip the first and last cell in each generation.
 			if (cells[g][i] == 0) fill(255);
 			else fill(0);
-			rect((i-1) * cellSize, g * cellSize, cellSize, cellSize);
+			rect(i * cellSize, g * cellSize, cellSize, cellSize);
 		}
 	}
 	if (cells.length >= height / cellSize) cells.shift();
@@ -36,19 +36,17 @@ function draw() {
 }
 
 function beget() {
+	// Initialize cells if somehow we haven't done that yet
+	if (!cells.length) return initCells();
 	// "Beget" a new generation of cells
-	if (!cells.length) {
-		initCells();
-		return;
-	}
 	let currentGen = cells[cells.length - 1];
 	let nextGen = [];
 	// Skip edge cases (we don't draw them)
-	nextGen[0] = nextGen[currentGen.length - 1] = 0;
-	for (let i = 1; i < currentGen.length - 1; i++) {
-		let left   = currentGen[i - 1];
+	// nextGen[0] = nextGen[currentGen.length - 1] = 0;
+	for (let i = 0; i < currentGen.length; i++) {
+		let left   = (i == 0) ? currentGen[currentGen.length - 1] : currentGen[i - 1];
 		let middle = currentGen[i];
-		let right  = currentGen[i + 1];
+		let right  = (i == currentGen.length - 1) ? currentGen[0] : currentGen[i + 1];
 		nextGen[i] = getState(left, middle, right);
 	}
 	cells.push(nextGen);
@@ -65,7 +63,7 @@ function getState(a, b, c) {
 
 function initCells() {
 	// Fills the cells[] array with a first generation of cells
-	// All first generations cells are set to state 0 by default, except the middle one.
+	// All first generation cells are set to state 0 by default, except the middle one.
 	let population = Math.floor(bufferWidth / cellSize);
 	document.getElementById('population').innerHTML = population;
 	let middle = Math.floor(population/2);
