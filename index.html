@@ -6,14 +6,17 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.js"></script>
   	<script type="text/javascript" src="ca.js"></script>
+  	<link type="text/css" href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   	<link type="text/css" href="style.css" rel="stylesheet">
   	<title>CA Maker</title>
 </head>
 <body onload="initDoc()">
-	<div class="container">
+	<div class="bar">
 		<h1>CA Maker</h1>
+	</div>
+	<div class="container">
 		<p>CA Maker allows you to build and simulate your own <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton" target="_blank">elementary cellular automaton</a>. A cellular automaton (CA) is a row of cells in a particular state (in this case, black or white). Over time, the state of a cell may change, depending on the state of its neighbors, according to a set of rules. In the animation below, each row represents one "generation" of the CA.</p>
-		<p>There are 256 ways for a CA such as this one to behave, and they're numbered 0-255. (Learn more about <a href="https://en.wikipedia.org/wiki/Rule_90" target="_blank">cellular automata rules</a>.) Change the rule by making a selection below. (Hint: Be sure to try rules 30, 110, and 190.)</p>
+		<p>There are 256 ways for a CA such as this one to behave, and they're numbered 0-255. (Learn more about <a href="https://en.wikipedia.org/wiki/Rule_90" target="_blank">cellular automata rules</a>.) Change the rule by making a selection below. (Hint: Be sure to try rules 30, 110, and 190.) You can even pause the animation and create each successive generation one click at a time.</p>
 		<ul class="settings-group">
 			<li>
 				<span>Population: <span id="population"></span></span>
@@ -42,8 +45,10 @@
 			<button id="resume" disabled>Resume</button>
 			<button id="saveCA">Save as image</button>
 		</div>
+	</div>
+	<div id="footer">
 		<p>CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
-		<p>To learn more, check out <a href="https://natureofcode.com/book/" target="_blank">The Nature of Code</a>, by Daniel Shiffman.</p>
+		<p>To learn more about implementing cellular automata in code, check out <a href="https://natureofcode.com/book/" target="_blank">The Nature of Code</a>, by Daniel Shiffman.</p>
 	</div>
 </body>
 </html>
