@@ -1,18 +1,10 @@
-// Initialize the array of cells
 var cells = [],
 	cellSize = 10,
-	ruleset = [0,1,0,1,1,0,1,0],
-	bufferWidth;
+	ruleset = [];
 
-function setup() {
-	// Canvas dimensions should be evenly divisible by the cell size.
-	let defaultCanvasHeight = 400;
-	let canvasHeight = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize)
-	let containerW = document.getElementById('canvasContainer').clientWidth;
-	bufferWidth = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
-	// Subtract two cell-widths from the canvas, since we don't draw the first or last cell in each generation
-	// canvasWidth = bufferWidth - 2 * cellSize;
-	let canvas = createCanvas(bufferWidth, canvasHeight);
+function setup() {	
+	let dimensions = getCanvasSize();
+	let canvas = createCanvas(dimensions.width, dimensions.height);
 	canvas.parent('canvasContainer');
 	// Fill the cells array with the first generation
 	initCells();
@@ -63,7 +55,7 @@ function getState(a, b, c) {
 function initCells() {
 	// Fills the cells[] array with a first generation of cells
 	// All first generation cells are set to state 0 by default, except the middle one.
-	let population = Math.floor(bufferWidth / cellSize);
+	let population = Math.floor(width / cellSize);
 	document.getElementById('population').innerHTML = population;
 	let middle = Math.floor(population/2);
 	let firstGeneration = [];
@@ -150,4 +142,21 @@ function initDoc() {
 	rsSelect.value = 90;
 	rsSelect.addEventListener('change', updateRuleset);
 	document.getElementById('rs').innerHTML = ruleset;
+	updateRuleset();
+}
+
+function getCanvasSize() {
+	// Canvas dimensions should be evenly divisible by the cell size.
+	let width, height, containerW, defaultCanvasHeight = 400;
+	height = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize);
+	containerW = document.getElementById('canvasContainer').clientWidth;
+	width = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
+	return {width:  width,
+			height: height};
+}
+
+function windowResized() {
+	let size = getCanvasSize();
+	resizeCanvas(size.width, size.height);
+	reset();
 }
