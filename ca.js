@@ -129,7 +129,7 @@ function initDoc() {
 	document.getElementById('pause').addEventListener('click', pause);
 	document.getElementById('resume').addEventListener('click', resume);
 	document.getElementById('saveCA').addEventListener('click', saveCA);
-	document.getElementById('frSetting').addEventListener('change', updateFrameRate);
+	document.getElementById('frSetting').addEventListener('mousemove', updateFrameRate);
 	document.getElementById('gridSetting').addEventListener('change', updateGrid);
 	// Populate ruleset select
 	let rsSelect = document.getElementById('ruleset');
