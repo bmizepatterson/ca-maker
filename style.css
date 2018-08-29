@@ -46,11 +46,10 @@ select {
 	background-color:white;
 }
 .settings-group {
-	margin: 24px 0;
 	padding:0;
 }
 .settings-group li {
 	display:inline;
-	margin:0;
-	padding-right:16px;
+	padding-right:3rem;
+	line-height: 2rem;
 }

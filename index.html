@@ -12,20 +12,17 @@
 <body onload="initDoc()">
 	<div class="container">
 		<h1>CA Maker</h1>
-		<p>CA Maker allows you to build and simulate your own <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton" target="_blank">elementary cellular automaton</a>. A cellular automaton (CA) is a row of cells in a particular state (in this case, black or white). Over time, the state of a cell may change, depending on the state of its neighbors, according to a set of rules.</p>
-		<p>There are 256 ways for a CA such as this one to behave, and they're numbered 0-255. Learn more about <a href="https://en.wikipedia.org/wiki/Rule_90" target="_blank">cellular automata rules</a>, or change the rule by making a selection below. (Hint: Be sure to try rules 30, 110, and 190.)</p>
+		<p>CA Maker allows you to build and simulate your own <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton" target="_blank">elementary cellular automaton</a>. A cellular automaton (CA) is a row of cells in a particular state (in this case, black or white). Over time, the state of a cell may change, depending on the state of its neighbors, according to a set of rules. In the animation below, each row represents one "generation" of the CA.</p>
+		<p>There are 256 ways for a CA such as this one to behave, and they're numbered 0-255. (Learn more about <a href="https://en.wikipedia.org/wiki/Rule_90" target="_blank">cellular automata rules</a>.) Change the rule by making a selection below. (Hint: Be sure to try rules 30, 110, and 190.)</p>
 		<ul class="settings-group">
 			<li>
-				<span>States: 2 (black or white)</span>
+				<span>Population: <span id="population"></span></span>
 			</li>
 			<li>
 				<label for="ruleset">Rule set:</label>
 				<select name="ruleset" id="ruleset">
 				</select>
 				<span id="rs"></span>
-			</li>
-			<li>
-				<span>Population: <span id="population"></span></span>
 			</li>
 			<li>
 				<label for="frSetting">Speed:</label>
