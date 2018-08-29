@@ -53,6 +53,24 @@ select {
 .bar h1 {
 	margin:0;
 }
+.bar ul {
+	padding:0;
+	margin:0;
+}
+.bar li {
+	display:inline;
+	float:right;
+	margin:0;
+	padding-right: 16px;
+    padding-top: 10px;
+}
+.bar a {
+	color:white;
+	text-decoration: none;
+}
+.bar a:hover {
+	text-decoration: underline;
+}
 .center {
 	text-align:center;
 }
