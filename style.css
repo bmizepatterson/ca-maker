@@ -22,6 +22,10 @@ button[disabled]:hover {
 	background:white;
 	color:graytext;
 }
+input[type="checkbox"] {
+	font-size: inherit;
+    vertical-align: text-top;
+}
 select {
 	font-family: inherit;
 	font-size: inherit;

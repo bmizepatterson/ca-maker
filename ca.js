@@ -17,8 +17,7 @@ function setup() {
 	// Fill the cells array with the first generation
 	initCells();
 	frameRate(10);
-	// noStroke();
-	stroke(230);
+	updateGrid();
 }
 
 function draw() {
@@ -123,6 +122,14 @@ function updateFrameRate() {
 	frameRate(parseInt(document.getElementById('frSetting').value));
 }
 
+function updateGrid() {
+	if (document.getElementById('gridSetting').checked) {
+		stroke(230);
+	} else {
+		noStroke();	
+	}
+}
+
 function initDoc() {
 	// Add event listeners
 	document.getElementById('step').addEventListener('click', step);
@@ -131,6 +138,7 @@ function initDoc() {
 	document.getElementById('resume').addEventListener('click', resume);
 	document.getElementById('saveCA').addEventListener('click', saveCA);
 	document.getElementById('frSetting').addEventListener('change', updateFrameRate);
+	document.getElementById('gridSetting').addEventListener('change', updateGrid);
 	// Populate ruleset select
 	let rsSelect = document.getElementById('ruleset');
 	for (let i = 0; i < 256; i++) {
