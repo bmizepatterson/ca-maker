@@ -13,6 +13,7 @@ button {
 	font-size:inherit;
 	padding:4px 8px;
 	margin:4px;
+	transition: 0.1s;
 }
 button:hover {
 	background:black;
@@ -21,6 +22,9 @@ button:hover {
 button[disabled]:hover {
 	background:white;
 	color:graytext;
+}
+button:active {
+	transform:translateY(1px);
 }
 input[type="checkbox"] {
 	font-size: inherit;
