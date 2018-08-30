@@ -1,6 +1,7 @@
 var cells = [],
 	cellSize = 10,
-	ruleset = [];
+	ruleset = [],
+	cr;	// 'current rule' canvas
 
 function setup() {	
 	// Main canvas
@@ -8,7 +9,7 @@ function setup() {
 	let canvas = createCanvas(dimensions.width, dimensions.height);
 	canvas.parent('canvasContainer');
 	// Canvas for illustrating the current rule
-	let cr = createGraphics(100,100);
+	cr = createGraphics(800,200);
 	cr.parent('currentRule');
 	cr.show();
 	cr.background(255);
@@ -30,6 +31,43 @@ function draw() {
 	}
 	if (cells.length >= height / cellSize) cells.shift();
 	beget();
+}
+
+function drawRule() {
+	// Draw the current set of rules in a human-readable form
+	let rs = ruleset.slice().reverse();	// Since the ruleset array is reversed, let's
+										// make a copy and reverse it back for illustrating
+	// Print the rule in text form
+	let text = 'Current Rule: ' + rs;
+	cr.textFont('Verdana', 16);
+	cr.text(text, 16, 32);
+	// Define margins and calculate the cell size relative to the canvas size
+	let margin = 16;	   				// left & right margins
+	let width = cr.width - margin * 2;
+	let unit = width / 31; 				// We'll be drawing 31 columns (24 cells, 7 spaces)
+	let top = 64;
+	// Iterate through each rule and illustrate
+	for (let i = 0; i < 8; i++) {
+		// Draw the sets of 3 cells for each situation
+		// Start by converting i to 3 binary digits
+		let neighborhood = i.toString(2).padStart(3, '0').split("");
+		// cr.text(i, margin + i * unit, top + unit * 4);
+		for (let j = 0; j < neighborhood.length; j++) {
+			if (neighborhood[j] == 0) cr.fill(0);
+			else cr.fill(255);
+			cr.stroke(0);
+			let left = (i === 0) ?  margin + (j * unit) + (i * unit) : margin + (j * unit) + ((i + 1) * unit);
+			cr.rect(left, top, unit, unit);
+			// cr.text(neighborhood[j], left, top + unit * 3);
+		}
+		// Draw each of the 8 rules in this set
+		if (rs[i] == 0) cr.fill(255);
+		else cr.fill(0);
+		cr.stroke(0);
+		margin = (i === 0) ? margin + unit : margin + 2 * unit;
+		cr.rect(margin + i * unit, top+unit, unit, unit);
+	}
+
 }
 
 function beget() {
@@ -112,6 +150,7 @@ function updateRuleset() {
 	ruleset = newRule.reverse();
 	reset();
 	document.getElementById('rs').innerHTML = newRule;
+	drawRule();
 }
 
 function updateFrameRate() {
