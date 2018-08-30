@@ -86,6 +86,7 @@ select {
 }
 .p5Canvas {
 	border:1px solid #DDD;
+	background-color:white;
 }
 .settings-group {
 	padding:0;

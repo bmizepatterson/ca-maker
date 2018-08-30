@@ -17,6 +17,7 @@ function setup() {
 	initCells();
 	frameRate(10);
 	updateGrid();
+	noLoop();
 }
 
 function draw() {
@@ -117,27 +118,27 @@ function initCells() {
 function reset() {
 	cells = [];
 	clear();
-	loop();
-	document.getElementById('pause').disabled = false;
-	document.getElementById('resume').disabled = true;
-	document.getElementById('step').disabled = true;
+	noLoop();
+	document.getElementById('stop').disabled = true;
+	document.getElementById('start').disabled = false;
+	document.getElementById('step').disabled = false;
 }
 
 function step() {
 	redraw();
 }
 
-function pause() {
+function stop() {
 	noLoop();
-	document.getElementById('pause').disabled = true;
-	document.getElementById('resume').disabled = false;
+	document.getElementById('stop').disabled = true;
+	document.getElementById('start').disabled = false;
 	document.getElementById('step').disabled = false;
 }
 
-function resume() {
+function start() {
 	loop();
-	document.getElementById('pause').disabled = false;
-	document.getElementById('resume').disabled = true;
+	document.getElementById('stop').disabled = false;
+	document.getElementById('start').disabled = true;
 	document.getElementById('step').disabled = true;
 }
 
@@ -169,8 +170,8 @@ function initDoc() {
 	// Add event listeners
 	document.getElementById('step').addEventListener('click', step);
 	document.getElementById('reset').addEventListener('click', reset);
-	document.getElementById('pause').addEventListener('click', pause);
-	document.getElementById('resume').addEventListener('click', resume);
+	document.getElementById('stop').addEventListener('click', stop);
+	document.getElementById('start').addEventListener('click', start);
 	document.getElementById('saveCA').addEventListener('click', saveCA);
 	document.getElementById('frSetting').addEventListener('mousemove', updateFrameRate);
 	document.getElementById('gridSetting').addEventListener('change', updateGrid);
