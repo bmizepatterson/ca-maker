@@ -3,9 +3,15 @@ var cells = [],
 	ruleset = [];
 
 function setup() {	
+	// Main canvas
 	let dimensions = getCanvasSize();
 	let canvas = createCanvas(dimensions.width, dimensions.height);
 	canvas.parent('canvasContainer');
+	// Canvas for illustrating the current rule
+	let cr = createGraphics(100,100);
+	cr.parent('currentRule');
+	cr.show();
+	cr.background(255);
 	// Fill the cells array with the first generation
 	initCells();
 	frameRate(10);
