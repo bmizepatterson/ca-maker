@@ -54,8 +54,8 @@ function drawRule() {
 		let left = margin 				// Account for margin
 		     	 + (3 * i * unit)		// Account for which neighborhood we're drawing
 		     	 + (i * unit);			// Add an extra unit per neighborhood to create a space between each
-		// Start by converting i to 3 binary digits
-		let neighborhood = i.toString(2).padStart(3, '0').split("");
+		// Start by converting i to an array of 3 binary digits
+		let neighborhood = decToBinArray(i, 3);
 		for (let j = 0; j < neighborhood.length; j++) {
 			if (neighborhood[j] == 0) cr.fill(255);
 			else cr.fill(0);
@@ -146,14 +146,9 @@ function saveCA() {
 }
 
 function updateRuleset() {
-	// Convert the decimal rule # to an array of its digits in binary in reverse
+	// Convert the decimal rule # to an array of its digits in binary
 	let newRule = parseInt(document.getElementById('ruleset').value);
-	// Convert to binary
-	newRule = newRule.toString(2);
-	// Pad with 0's
-	newRule = newRule.padStart(8, '0');
-	// Split into an array
-	ruleset = newRule.split("");
+	ruleset = decToBinArray(newRule, 8);
 	reset();
 	drawRule();
 }
@@ -221,4 +216,9 @@ function windowResized() {
 	cr.resizeCanvas(crSize.width, crSize.height);
 	drawRule();
 	reset();
+}
+
+function decToBinArray(dec, pad) {
+	// Takes a decimal integer and returns a binary integer with the specified # of leading zeros
+	return dec.toString(2).padStart(pad, '0').split('');
 }
