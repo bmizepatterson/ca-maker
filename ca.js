@@ -47,7 +47,7 @@ function drawRule() {
 	const width = cr.width - margin * 2;
 	const unit = width / 31; 			// We'll be drawing 31 columns (24 cells, 7 spaces)
 	const top = 64;
-	// Iterate through each rule and illustrate
+	// Iterate through each rule and illustrate	
 	for (let i = 0; i < 8; i++) {
 		// Draw the sets of 3 cells for each situation
 		let left = margin 				// Account for margin
@@ -55,7 +55,6 @@ function drawRule() {
 		     	 + (i * unit);			// Add an extra unit per neighborhood to create a space between each
 		// Start by converting i to 3 binary digits
 		let neighborhood = i.toString(2).padStart(3, '0').split("");
-		// cr.text(i, margin + i * unit, top + unit * 4);
 		for (let j = 0; j < neighborhood.length; j++) {
 			if (neighborhood[j] == 0) cr.fill(0);
 			else cr.fill(255);
@@ -69,8 +68,11 @@ function drawRule() {
 		cr.stroke(0);
 		let ileft = left + unit;		// Add one unit to draw it in the center of the neighborhood
 		cr.rect(ileft, top + unit, unit, unit);
+		cr.textAlign(CENTER);
+		cr.fill(0);
+		cr.noStroke();
+		cr.text(ruleset[i], ileft + unit/2, top + unit * 3);
 	}
-
 }
 
 function beget() {
