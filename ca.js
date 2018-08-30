@@ -106,11 +106,11 @@ function initCells() {
 	// All first generation cells are set to state 0 by default, except the middle one.
 	let population = Math.floor(width / cellSize);
 	document.getElementById('population').innerHTML = population;
-	let middle = Math.floor(population/2);
 	let firstGeneration = [];
 	for (let i = 0; i < population; i++) {
-		firstGeneration[i] = (i == middle) ? 1 : 0;
+		firstGeneration[i] = 0;
 	}
+	firstGeneration[Math.floor(population/2)] = 1;
 	cells.push(firstGeneration);
 }
 
