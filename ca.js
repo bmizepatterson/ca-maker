@@ -35,6 +35,7 @@ function draw() {
 
 function drawRule() {
 	// Draw the current set of rules in a human-readable form
+	cr.clear();
 	let rs = ruleset.slice().reverse();	// Since the ruleset array is reversed, let's
 										// make a copy and reverse it back for illustrating
 	// Print the rule in text form
@@ -42,13 +43,16 @@ function drawRule() {
 	cr.textFont('Verdana', 16);
 	cr.text(text, 16, 32);
 	// Define margins and calculate the cell size relative to the canvas size
-	let margin = 16;	   				// left & right margins
-	let width = cr.width - margin * 2;
-	let unit = width / 31; 				// We'll be drawing 31 columns (24 cells, 7 spaces)
-	let top = 64;
+	const margin = 16;	   				// left & right margins
+	const width = cr.width - margin * 2;
+	const unit = width / 31; 			// We'll be drawing 31 columns (24 cells, 7 spaces)
+	const top = 64;
 	// Iterate through each rule and illustrate
 	for (let i = 0; i < 8; i++) {
 		// Draw the sets of 3 cells for each situation
+		let left = margin 				// Account for margin
+		     	 + (3 * i * unit)		// Account for which neighborhood we're drawing
+		     	 + (i * unit);			// Add an extra unit per neighborhood to create a space between each
 		// Start by converting i to 3 binary digits
 		let neighborhood = i.toString(2).padStart(3, '0').split("");
 		// cr.text(i, margin + i * unit, top + unit * 4);
@@ -56,16 +60,15 @@ function drawRule() {
 			if (neighborhood[j] == 0) cr.fill(0);
 			else cr.fill(255);
 			cr.stroke(0);
-			let left = (i === 0) ?  margin + (j * unit) + (i * unit) : margin + (j * unit) + ((i + 1) * unit);
-			cr.rect(left, top, unit, unit);
-			// cr.text(neighborhood[j], left, top + unit * 3);
+			let jleft = left + (j * unit);		// Account for where we are in the neighborhood
+			cr.rect(jleft, top, unit, unit);
 		}
-		// Draw each of the 8 rules in this set
+		// Draw the rule cell for this set
 		if (rs[i] == 0) cr.fill(255);
 		else cr.fill(0);
 		cr.stroke(0);
-		margin = (i === 0) ? margin + unit : margin + 2 * unit;
-		cr.rect(margin + i * unit, top+unit, unit, unit);
+		let ileft = left + unit;		// Add one unit to draw it in the center of the neighborhood
+		cr.rect(ileft, top + unit, unit, unit);
 	}
 
 }
