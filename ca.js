@@ -9,10 +9,10 @@ function setup() {
 	let canvas = createCanvas(dimensions.width, dimensions.height);
 	canvas.parent('canvasContainer');
 	// Canvas for illustrating the current rule
-	cr = createGraphics(800,200);
+	let crDimensions = getCRCanvasSize();
+	cr = createGraphics(crDimensions.width,crDimensions.height);
 	cr.parent('currentRule');
 	cr.show();
-	cr.background(255);
 	// Fill the cells array with the first generation
 	initCells();
 	frameRate(10);
@@ -36,17 +36,17 @@ function draw() {
 function drawRule() {
 	// Draw the current set of rules in a human-readable form
 	cr.clear();
-	let rs = ruleset.slice().reverse();	// Since the ruleset array is reversed, let's
-										// make a copy and reverse it back for illustrating
-	// Print the rule in text form
-	let text = 'Current Rule: ' + rs;
-	cr.textFont('Verdana', 16);
-	cr.text(text, 16, 32);
+	// Print the rule in text form, showing both binary and decimal versions
+	let bin = ruleset.join('');
+	let text = 'Current Rule: ' + bin + ' (' + parseInt(bin, 2) + ')';
+	const textSize = 16;
+	cr.textAlign(LEFT);
+	cr.textFont('Verdana', textSize);
+	cr.text(text, textSize, 2 * textSize);
 	// Define margins and calculate the cell size relative to the canvas size
-	const margin = 16;	   				// left & right margins
-	const width = cr.width - margin * 2;
-	const unit = width / 31; 			// We'll be drawing 31 columns (24 cells, 7 spaces)
-	const top = 64;
+	const margin = 16;	   						// left & right margins
+	const unit = (cr.width - margin * 2) / 31; 	// We'll be drawing 31 columns (24 cells, 7 spaces)
+	const top = margin * 4;
 	// Iterate through each rule and illustrate	
 	for (let i = 0; i < 8; i++) {
 		// Draw the sets of 3 cells for each situation
@@ -56,14 +56,14 @@ function drawRule() {
 		// Start by converting i to 3 binary digits
 		let neighborhood = i.toString(2).padStart(3, '0').split("");
 		for (let j = 0; j < neighborhood.length; j++) {
-			if (neighborhood[j] == 0) cr.fill(0);
-			else cr.fill(255);
+			if (neighborhood[j] == 0) cr.fill(255);
+			else cr.fill(0);
 			cr.stroke(0);
 			let jleft = left + (j * unit);		// Account for where we are in the neighborhood
 			cr.rect(jleft, top, unit, unit);
 		}
 		// Draw the rule cell for this set
-		if (rs[i] == 0) cr.fill(255);
+		if (ruleset[i] == 0) cr.fill(255);
 		else cr.fill(0);
 		cr.stroke(0);
 		let ileft = left + unit;		// Add one unit to draw it in the center of the neighborhood
@@ -71,7 +71,7 @@ function drawRule() {
 		cr.textAlign(CENTER);
 		cr.fill(0);
 		cr.noStroke();
-		cr.text(ruleset[i], ileft + unit/2, top + unit * 3);
+		cr.text(ruleset[i], ileft + unit/2, top + unit * 2 + textSize);
 	}
 }
 
@@ -150,9 +150,8 @@ function updateRuleset() {
 	newRule = newRule.toString(2);
 	// Pad with 0's
 	newRule = newRule.padStart(8, '0');
-	// Reverse it
-	newRule = newRule.split("");
-	ruleset = newRule.reverse();
+	// Split into an array
+	ruleset = newRule.split("");
 	reset();
 	document.getElementById('rs').innerHTML = newRule;
 	drawRule();
@@ -194,6 +193,8 @@ function initDoc() {
 }
 
 function getCanvasSize() {
+	// Calculate the size of the main canvas
+	// Returns object with the properties `width` and `height`
 	// Canvas dimensions should be evenly divisible by the cell size.
 	let width, height, containerW, defaultCanvasHeight = 400;
 	height = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize);
@@ -203,8 +204,21 @@ function getCanvasSize() {
 			height: height};
 }
 
+function getCRCanvasSize() {
+	// Calculate the size of the "current rule" canvas
+	// Returns object with the properties `width` and `height`
+	let width, height;
+	width = document.getElementById('currentRule').clientWidth;
+	width = (width > 800) ? 800 : width;
+	height = 150;
+	return {width:  width,
+			height: height};
+}
+
 function windowResized() {
-	let size = getCanvasSize();
+	let size = getCanvasSize(), crSize = getCRCanvasSize();
 	resizeCanvas(size.width, size.height);
+	cr.resizeCanvas(crSize.width, crSize.height);
+	drawRule();
 	reset();
 }
