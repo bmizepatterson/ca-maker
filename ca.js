@@ -20,6 +20,7 @@ function setup() {
 }
 
 function draw() {
+	background(255);
 	for (let g = 0; g < cells.length; g++) {
 		// Iterate over the cell generations
 		for (let i = 0; i < cells[g].length; i++) {
@@ -35,7 +36,7 @@ function draw() {
 
 function drawRule() {
 	// Draw the current set of rules in a human-readable form
-	cr.clear();
+	cr.background('rgba(0,0,0,0)');
 	// Print the rule in text form, showing both binary and decimal versions
 	let bin = ruleset.join('');
 	let text = 'Current Rule: ' + bin + ' (' + parseInt(bin, 2) + ')';

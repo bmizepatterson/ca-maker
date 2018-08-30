@@ -82,9 +82,10 @@ select {
 }
 .p5Canvas, #currentRule canvas {
 	display:block;
-	margin:auto;
+	margin:auto;	
+}
+.p5Canvas {
 	border:1px solid #DDD;
-	background-color:white;
 }
 .settings-group {
 	padding:0;
