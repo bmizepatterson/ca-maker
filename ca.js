@@ -36,14 +36,14 @@ function draw() {
 
 function drawRule() {
 	// Draw the current set of rules in a human-readable form
-	cr.background('rgba(0,0,0,0)');
+	cr.clear();
 	// Print the rule in text form, showing both binary and decimal versions
 	let bin = ruleset.join('');
-	let text = 'Current Rule: ' + bin + ' (' + parseInt(bin, 2) + ')';
+	let text = 'Rule ' + parseInt(bin, 2) + ' (' + bin + ')';
 	const textSize = 16;
 	cr.textAlign(LEFT);
-	cr.textFont('Verdana', textSize);
-	cr.text(text, textSize, 2 * textSize);
+	cr.textFont('monospace', 2 * textSize);
+	cr.text(text, textSize, 3 * textSize);
 	// Define margins and calculate the cell size relative to the canvas size
 	const margin = 16;	   						// left & right margins
 	const unit = (cr.width - margin * 2) / 31; 	// We'll be drawing 31 columns (24 cells, 7 spaces)
@@ -70,6 +70,7 @@ function drawRule() {
 		let ileft = left + unit;		// Add one unit to draw it in the center of the neighborhood
 		cr.rect(ileft, top + unit, unit, unit);
 		cr.textAlign(CENTER);
+		cr.textSize(textSize);
 		cr.fill(0);
 		cr.noStroke();
 		cr.text(ruleset[i], ileft + unit/2, top + unit * 2 + textSize);
@@ -154,7 +155,6 @@ function updateRuleset() {
 	// Split into an array
 	ruleset = newRule.split("");
 	reset();
-	document.getElementById('rs').innerHTML = newRule;
 	drawRule();
 }
 
@@ -189,7 +189,6 @@ function initDoc() {
 	}
 	rsSelect.value = 90;
 	rsSelect.addEventListener('change', updateRuleset);
-	document.getElementById('rs').innerHTML = ruleset;
 	updateRuleset();
 }
 
