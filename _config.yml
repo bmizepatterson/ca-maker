@@ -23,7 +23,12 @@ lang: en-US
 
 # Build settings
 markdown: kramdown
-plugins:
+defaults:
+  - scope:
+      path: ""
+    values:
+      show-nav: true
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

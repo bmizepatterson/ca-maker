@@ -57,27 +57,6 @@ select {
 .bar h1 {
 	margin:0;
 }
-.site-info {
-	font-size: 12px;
-	padding-left:16px;
-}
-.site-info ul {
-	float:left;
-	margin:0;
-	padding:0;
-}
-.site-info li {
-	display: inline-block;
-}
-.site-name {
-	float:left;
-	color: #046380;
-	font-size:16px;
-	font-weight:bold;
-	font-variant: small-caps;
-	padding-right:16px;
-	margin-top:-5px;
-}
 .header .site-name a, .header .site-name a:visited, .header .site-name a:hover {
 	color: inherit;
 	text-decoration: inherit;
@@ -86,6 +65,7 @@ select {
 	padding-top: 8px;
 	background-color:white;
 	font-size: 14px;
+	height:21px;
 }
 .header p {
 	margin:-4px 0 0 16px;
@@ -134,4 +114,25 @@ select {
 	display:inline;
 	padding-right:3rem;
 	line-height: 2rem;
+}
+.site-info {
+	font-size: 12px;
+	padding-left:16px;
+}
+.site-info ul {
+	float:left;
+	margin:0;
+	padding:0;
+}
+.site-info li {
+	display: inline-block;
+}
+.site-name {
+	float:left;
+	color: #046380;
+	font-size:16px;
+	font-weight:bold;
+	font-variant: small-caps;
+	padding-right:16px;
+	margin-top:-5px;
 }
