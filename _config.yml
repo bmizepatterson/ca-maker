@@ -19,6 +19,7 @@ description: Build and simulate your own elementary cellular automata
 baseurl: "/ca-maker" # the subpath of your site, e.g. /blog
 url: "https:bmizepatterson.github.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  bmizepatterson
+lang: en-US
 
 # Build settings
 markdown: kramdown
