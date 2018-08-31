@@ -195,7 +195,7 @@ function getCanvasSize() {
 	// Calculate the size of the main canvas
 	// Returns object with the properties `width` and `height`
 	// Canvas dimensions should be evenly divisible by the cell size.
-	let width, height, containerW, defaultCanvasHeight = 400;
+	let width, height, containerW, defaultCanvasHeight = 350;  // 350px wide
 	height = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize);
 	containerW = document.getElementById('canvasContainer').clientWidth;
 	width = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
