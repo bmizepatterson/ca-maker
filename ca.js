@@ -128,7 +128,8 @@ function reset() {
 }
 
 function step() {
-	redraw();
+	let n = (cells.length > 1) ? 1 : 2;
+	redraw(n);
 }
 
 function stop() {
