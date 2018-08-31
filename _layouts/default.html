@@ -3,7 +3,13 @@
 
 	{%- include head.html -%}
 
-	<body onload="{{ page.onload }}">
+	{%- if page.onload -%}
+		{%- capture bodyExtra -%} onload="{{ page.onload }}"{%- endcapture -%}
+	{%- else -%}
+		{%- assign bodyExtra = '' -%}
+	{%- endif -%}
+
+	<body {{ bodyExtra }}>
 
 		{%- include header.html -%}
 
