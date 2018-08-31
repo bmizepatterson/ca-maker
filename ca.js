@@ -114,12 +114,11 @@ function initCells(draw = true) {
 		firstGeneration[i] = 0;
 	}
 	firstGeneration[Math.floor(population/2)] = 1;
-	cells.push(firstGeneration);
+	cells = [firstGeneration];
 	if (draw) drawGen(0);
 }
 
 function reset() {
-	cells = [];
 	clear();
 	noLoop();
 	initCells();
