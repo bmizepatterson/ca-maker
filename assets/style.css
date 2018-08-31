@@ -126,6 +126,7 @@ select {
 }
 .site-info li {
 	display: inline-block;
+	margin-right: 6px;
 }
 .site-name {
 	float:left;
