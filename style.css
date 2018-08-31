@@ -52,6 +52,7 @@ select {
 	background-color: #046380;
     color: white;
     padding-left: 8px;
+    height:48px;
 }
 .bar h1 {
 	margin:0;
