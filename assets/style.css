@@ -79,6 +79,11 @@ select {
 .header a:hover {
 	text-decoration: underline;
 }
+.info {
+	font-size: 1.2rem;
+	line-height: 1.75;
+    margin:0;
+}
 .nav {
 	padding:0;
 	margin:0 8px 0 0;
@@ -146,4 +151,10 @@ li.active a, li.active a:hover {
 	font-variant: small-caps;
 	padding-right:16px;
 	margin-top:-5px;
+}
+@media only screen and (min-width:600px) {
+	.info {
+    	margin-left: 15%;
+    	margin-right: 15%;
+    }
 }
