@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+	{%- include head.html -%}
+
+	<body onload="{{ page.onload }}">
+
+		{%- include header.html -%}
+
+		<div class="bar">
+			<h1>{{ page.title }}</h1>
+		</div>
+
+		<div class="container">
+
+			{{ content }}
+
+		</div>
+
+		<div id="footer">
+			<p>CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
+			<p>To learn more about implementing cellular automata in code, check out <a href="https://natureofcode.com/book/" target="_blank">The Nature of Code</a>, by Daniel Shiffman.</p>
+		</div>
+
+	</body>
+</html>
