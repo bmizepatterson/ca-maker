@@ -20,8 +20,8 @@ function setup() {
 
 function draw() {
 	background(255);
-	for (let gen = 0; gen < cells.length; gen++) {
-		drawGen(gen);
+	for (let [key, value] of cells.entries()) {
+		drawGen(key);
 	}
 	if (cells.length >= height / cellSize) cells.shift();
 	beget();
@@ -29,11 +29,11 @@ function draw() {
 
 function drawGen(gen) {
 	// Draw a single generation of cells
-	for (let i = 0; i < cells[gen].length; i++) {
+	for (let [cell, state] of cells[gen].entries()) {
 		// Iterate over the cells in this generation.
-		if (cells[gen][i] == 0) fill(255);
+		if (state == 0) fill(255);
 		else fill(0);
-		rect(i * cellSize, gen * cellSize, cellSize, cellSize);
+		rect(cell * cellSize, gen * cellSize, cellSize, cellSize);
 	}
 }
 
