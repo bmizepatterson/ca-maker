@@ -13,8 +13,6 @@ function setup() {
 	cr = createGraphics(crDimensions.width,crDimensions.height);
 	cr.parent('currentRule');
 	cr.show();
-	// Fill the cells array with the first generation
-	initCells();
 	frameRate(10);
 	updateGrid();
 	noLoop();
@@ -22,17 +20,21 @@ function setup() {
 
 function draw() {
 	background(255);
-	for (let g = 0; g < cells.length; g++) {
-		// Iterate over the cell generations
-		for (let i = 0; i < cells[g].length; i++) {
-			// Iterate over the cells in this generation.
-			if (cells[g][i] == 0) fill(255);
-			else fill(0);
-			rect(i * cellSize, g * cellSize, cellSize, cellSize);
-		}
+	for (let gen = 0; gen < cells.length; gen++) {
+		drawGen(gen);
 	}
 	if (cells.length >= height / cellSize) cells.shift();
 	beget();
+}
+
+function drawGen(gen) {
+	// Draw a single generation of cells
+	for (let i = 0; i < cells[gen].length; i++) {
+		// Iterate over the cells in this generation.
+		if (cells[gen][i] == 0) fill(255);
+		else fill(0);
+		rect(i * cellSize, gen * cellSize, cellSize, cellSize);
+	}
 }
 
 function drawRule() {
@@ -80,7 +82,7 @@ function drawRule() {
 
 function beget() {
 	// Initialize cells if somehow we haven't done that yet
-	if (!cells.length) return initCells();
+	if (!cells.length) return initCells(false);
 	// "Beget" a new generation of cells
 	let currentGen = cells[cells.length - 1];
 	let nextGen = [];
@@ -102,7 +104,7 @@ function getState(a, b, c) {
 	return ruleset[rule];
 }
 
-function initCells() {
+function initCells(draw = true) {
 	// Fills the cells[] array with a first generation of cells
 	// All first generation cells are set to state 0 by default, except the middle one.
 	let population = Math.floor(width / cellSize);
@@ -113,12 +115,14 @@ function initCells() {
 	}
 	firstGeneration[Math.floor(population/2)] = 1;
 	cells.push(firstGeneration);
+	if (draw) drawGen(0);
 }
 
 function reset() {
 	cells = [];
 	clear();
 	noLoop();
+	initCells();
 	document.getElementById('stop').disabled = true;
 	document.getElementById('start').disabled = false;
 	document.getElementById('step').disabled = false;
@@ -159,11 +163,8 @@ function updateFrameRate() {
 }
 
 function updateGrid() {
-	if (document.getElementById('gridSetting').checked) {
-		stroke(230);
-	} else {
-		noStroke();	
-	}
+	if (document.getElementById('gridSetting').checked) stroke(230);
+	else noStroke();
 }
 
 function initDoc() {
@@ -186,6 +187,7 @@ function initDoc() {
 	rsSelect.value = 90;
 	rsSelect.addEventListener('change', updateRuleset);
 	updateRuleset();
+	initCells();
 }
 
 function getCanvasSize() {
