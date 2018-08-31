@@ -199,6 +199,7 @@ function getCanvasSize() {
 	height = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize);
 	containerW = document.getElementById('canvasContainer').clientWidth;
 	width = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
+	width++; height++; 	// Add room for the 1px border around the canvas
 	return {width:  width,
 			height: height};
 }
