@@ -28,6 +28,7 @@ defaults:
       path: ""
     values:
       show-nav: true
+      scripts: true
 
 
 # Exclude from processing.
