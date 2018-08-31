@@ -16,8 +16,8 @@
 title: CA Maker
 email: bmizepatterson@gmail.com
 description: Build and simulate your own elementary cellular automata
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https:bmizepatterson.github.com/ca-maker" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/ca-maker" # the subpath of your site, e.g. /blog
+url: "https:bmizepatterson.github.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  bmizepatterson
 
 # Build settings
