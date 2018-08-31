@@ -29,6 +29,7 @@ defaults:
     values:
       show-nav: true
       scripts: true
+      tab: false
 
 
 # Exclude from processing.

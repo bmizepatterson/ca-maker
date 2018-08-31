@@ -53,6 +53,7 @@ select {
     color: white;
     padding-left: 8px;
     height:48px;
+    position:relative;
 }
 .bar h1 {
 	margin:0;
@@ -85,13 +86,22 @@ select {
 }
 .nav li {
 	display: inline-block;
-	padding: 0 16px;
-	background-color: #046380;
+	padding: 0 16px;	
 	border-top-right-radius: 16px 100%;
 	border-top-left-radius: 16px 100%;
+	background-color: white;
+    border-top: 1px solid #046380;
+    border-left: 1px solid #046380;
+    border-right: 1px solid #046380;
+}
+.nav li.active {
+	background-color: #046380;
+}
+li.active a, li.active a:hover {
+	color:white;
 }
 .nav a, .nav a:hover {
-	color:white;
+	color:#046380;
 }
 .center {
 	text-align:center;
