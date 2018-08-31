@@ -169,13 +169,14 @@ function updateGrid() {
 
 function initDoc() {
 	// Add event listeners
-	document.getElementById('step').addEventListener('click', step);
-	document.getElementById('reset').addEventListener('click', reset);
-	document.getElementById('stop').addEventListener('click', stop);
-	document.getElementById('start').addEventListener('click', start);
-	document.getElementById('saveCA').addEventListener('click', saveCA);
-	document.getElementById('frSetting').addEventListener('mousemove', updateFrameRate);
-	document.getElementById('gridSetting').addEventListener('change', updateGrid);
+	document.getElementById('step').onclick = step;
+	// document.getElementById('step').addEventListener('click', step);
+	document.getElementById('reset').onclick = reset;
+	document.getElementById('stop').onclick = stop;
+	document.getElementById('start').onclick = start;
+	document.getElementById('saveCA').onclick = saveCA;
+	document.getElementById('frSetting').onmousemove = updateFrameRate;
+	document.getElementById('gridSetting').onchange = updateGrid;
 	// Populate ruleset select
 	let rsSelect = document.getElementById('ruleset');
 	for (let i = 0; i < 256; i++) {
