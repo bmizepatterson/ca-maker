@@ -56,23 +56,61 @@ select {
 .bar h1 {
 	margin:0;
 }
-.bar ul {
+.site-info {
+	font-size: 12px;
+	padding-left:16px;
+}
+.site-info ul {
+	float:left;
+	margin:0;
 	padding:0;
-	margin:0;
 }
-.bar li {
-	display:inline;
-	float:right;
-	margin:0;
-	padding-right: 16px;
-    padding-top: 10px;
+.site-info li {
+	display: inline-block;
 }
-.bar a {
-	color:white;
+.site-name {
+	float:left;
+	color: #046380;
+	font-size:16px;
+	font-weight:bold;
+	font-variant: small-caps;
+	padding-right:16px;
+	margin-top:-5px;
+}
+.header .site-name a, .header .site-name a:visited, .header .site-name a:hover {
+	color: inherit;
+	text-decoration: inherit;
+}
+.header {
+	padding-top: 8px;
+	background-color:white;
+	font-size: 14px;
+}
+.header p {
+	margin:-4px 0 0 16px;
+	float:left;
+}
+.header a {
+	color:black;
 	text-decoration: none;
 }
-.bar a:hover {
+.header a:hover {
 	text-decoration: underline;
+}
+.nav {
+	padding:0;
+	margin:0 8px 0 0;
+	text-align:right;
+}
+.nav li {
+	display: inline-block;
+	padding: 0 16px;
+	background-color: #046380;
+	border-top-right-radius: 16px 100%;
+	border-top-left-radius: 16px 100%;
+}
+.nav a, .nav a:hover {
+	color:white;
 }
 .center {
 	text-align:center;
