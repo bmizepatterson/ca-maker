@@ -2,7 +2,8 @@ var cells = [],
 	cellSize = 10,
 	ruleset = [],
 	cr,			// 'current rule' canvas
-	looping;	// Doesn't seem to be a way to get the looping state in p5 so let's track it ourselves
+	looping,	// Doesn't seem to be a way to get the looping state in p5 so let's track it ourselves
+	initialState;
 
 function setup() {	
 	// Main canvas
@@ -84,7 +85,7 @@ function drawRule() {
 
 function beget() {
 	// Initialize cells if somehow we haven't done that yet
-	if (!cells.length) return initCells(false);
+	if (!cells.length) return initCells(false, document.getElementById('initState').value);
 	// "Beget" a new generation of cells
 	let currentGen = cells[cells.length - 1];
 	let nextGen = [];
@@ -106,16 +107,24 @@ function getState(a, b, c) {
 	return ruleset[rule];
 }
 
-function initCells(draw = true) {
+function initCells(draw = true, initState = 'middleSeed') {
 	// Fills the cells[] array with a first generation of cells
 	// All first generation cells are set to state 0 by default, except the middle one.
 	let population = Math.floor(width / cellSize);
 	document.getElementById('population').innerHTML = population;
 	let firstGeneration = [];
-	for (let i = 0; i < population; i++) {
-		firstGeneration[i] = 0;
+	switch (initState) {
+		case 'middleSeed':
+			for (let i = 0; i < population; i++) {
+				firstGeneration[i] = 0;
+			}
+			firstGeneration[Math.floor(population/2)] = 1;
+			break;
+		case 'random':
+			for (let i = 0; i < population; i++) {
+				firstGeneration[i] = Math.floor(Math.random() * 2);
+			}
 	}
-	firstGeneration[Math.floor(population/2)] = 1;
 	cells = [firstGeneration];
 	if (draw) drawGen(0);
 }
@@ -124,7 +133,7 @@ function reset() {
 	clear();
 	noLoop();
 	looping = false;
-	initCells();
+	initCells(true, document.getElementById('initState').value);
 	document.getElementById('stop').disabled = true;
 	document.getElementById('start').disabled = false;
 	document.getElementById('step').disabled = false;
@@ -180,6 +189,10 @@ function updateGrid() {
 	else noStroke();
 }
 
+function updateInitState() {
+	initCells(true, document.getElementById('initState').value);
+}
+
 function initDoc() {
 	// Add event listeners
 	document.getElementById('step').onclick = step;
@@ -199,9 +212,10 @@ function initDoc() {
 		rsSelect.appendChild(option);
 	}
 	rsSelect.value = 90;
-	rsSelect.addEventListener('change', updateRuleset);
+	rsSelect.onchange = updateRuleset;
 	updateRuleset();
-	initCells();
+	document.getElementById('initState').onchange = updateInitState;
+	updateInitState();
 }
 
 function getCanvasSize() {
