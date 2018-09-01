@@ -160,6 +160,7 @@ function keyTyped() {
 		if (looping) stop();
 		else start();
 	}
+	return false;
 }
 
 function updateRuleset() {
