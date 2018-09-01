@@ -1,7 +1,8 @@
 var cells = [],
 	cellSize = 10,
 	ruleset = [],
-	cr;	// 'current rule' canvas
+	cr,			// 'current rule' canvas
+	looping;	// Doesn't seem to be a way to get the looping state in p5 so let's track it ourselves
 
 function setup() {	
 	// Main canvas
@@ -16,6 +17,7 @@ function setup() {
 	frameRate(10);
 	updateGrid();
 	noLoop();
+	looping = false;
 }
 
 function draw() {
@@ -121,6 +123,7 @@ function initCells(draw = true) {
 function reset() {
 	clear();
 	noLoop();
+	looping = false;
 	initCells();
 	document.getElementById('stop').disabled = true;
 	document.getElementById('start').disabled = false;
@@ -134,6 +137,7 @@ function step() {
 
 function stop() {
 	noLoop();
+	looping = false;
 	document.getElementById('stop').disabled = true;
 	document.getElementById('start').disabled = false;
 	document.getElementById('step').disabled = false;
@@ -141,6 +145,7 @@ function stop() {
 
 function start() {
 	loop();
+	looping = true;
 	document.getElementById('stop').disabled = false;
 	document.getElementById('start').disabled = true;
 	document.getElementById('step').disabled = true;
@@ -148,6 +153,13 @@ function start() {
 
 function saveCA() {
 	saveCanvas('myAutomaton', 'png');
+}
+
+function keyTyped() {
+	if (key === ' ') {
+		if (looping) stop();
+		else start();
+	}
 }
 
 function updateRuleset() {
