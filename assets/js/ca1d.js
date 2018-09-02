@@ -7,7 +7,7 @@ var cells = [],
 
 function setup() {	
 	// Main canvas
-	let dimensions = getCanvasSize();
+	let dimensions = getCanvasSize(document.getElementById('canvasContainer').clientWidth, 350, cellSize);
 	let canvas = createCanvas(dimensions.width, dimensions.height);
 	canvas.parent('canvasContainer');
 	// Canvas for illustrating the current rule
@@ -218,19 +218,6 @@ function initDoc() {
 	updateInitState();
 }
 
-function getCanvasSize() {
-	// Calculate the size of the main canvas
-	// Returns object with the properties `width` and `height`
-	// Canvas dimensions should be evenly divisible by the cell size.
-	let width, height, containerW, defaultCanvasHeight = 350;  // 350px wide
-	height = (defaultCanvasHeight % cellSize == 0) ? defaultCanvasHeight : defaultCanvasHeight - (defaultCanvasHeight % cellSize);
-	containerW = document.getElementById('canvasContainer').clientWidth;
-	width = (containerW % cellSize == 0) ? containerW : containerW - (containerW % cellSize);
-	width++; height++; 	// Add room for the 1px border around the canvas
-	return {width:  width,
-			height: height};
-}
-
 function getCRCanvasSize() {
 	// Calculate the size of the "current rule" canvas
 	// Returns object with the properties `width` and `height`
@@ -243,7 +230,8 @@ function getCRCanvasSize() {
 }
 
 function windowResized() {
-	let size = getCanvasSize(), crSize = getCRCanvasSize();
+	let size = getCanvasSize(document.getElementById('canvasContainer').clientWidth, 350, cellSize);
+	let crSize = getCRCanvasSize();
 	resizeCanvas(size.width, size.height);
 	cr.resizeCanvas(crSize.width, crSize.height);
 	drawRule();
