@@ -8,15 +8,11 @@
 	</div>
 	{%- if page.show-nav -%}
 		<ul class="nav">
-
-			{%- for p in site.pages -%}
-			  	{%- if p.tab -%}
-			  		{%- if p.tab == page.tab -%}<li class="active">{%- else -%}<li>{%- endif -%}
-			  			<a href="{{ p.url | relative_url }}">{{ p.tab }}</a>
-			  		</li>
-				{%- endif -%}
-			{%- endfor -%}
-		  	
+			{%- for tab in site.tabs -%}
+		  		{%- if page.path == tab[0] -%}<li class="active">{%- else -%}<li>{%- endif -%}
+		  			<a href="{{ tab[0] | relative_url }}">{{ tab[1] }}</a>
+		  		</li>
+			{%- endfor -%}		  	
 		</ul>
 	{%- endif -%}
 </div>

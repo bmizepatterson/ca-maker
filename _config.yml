@@ -31,6 +31,9 @@ defaults:
       scripts: true
       tab: false
 
+tabs:
+  - [index.html, "One-Dimensional"]
+  - [2d.html, "Two-Dimensional"]
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
