@@ -1,58 +1,41 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-	<meta charset="utf-8">
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.js"></script>
-  	<script type="text/javascript" src="ca.js"></script>
-  	<link type="text/css" href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-  	<link type="text/css" href="style.css" rel="stylesheet">
-  	<title>CA Maker</title>
-</head>
-<body onload="initDoc()">
-	<div class="bar">
-		<ul>
-			<li><a href="/2d.html">Two-Dimensional</a></li>
-			<li><a href="/">One-Dimensional</a></li>
-		</ul>
-		<h1>CA Maker</h1>
-	</div>
-	<div class="container">
-		<p>CA Maker allows you to build and simulate your own <a href="https://en.wikipedia.org/wiki/Elementary_cellular_automaton" target="_blank">elementary cellular automaton</a>. A cellular automaton (CA) is a row of cells in a particular state (in this case, black or white). Over time, the state of a cell may change, depending on the state of its neighbors, according to a set of rules. In the animation below, each row represents one "generation" of the CA.</p>
-		<p>There are 256 ways for a CA such as this one to behave, and they're numbered 0-255. (Learn more about <a href="https://en.wikipedia.org/wiki/Rule_90" target="_blank">cellular automata rules</a>.) Change the rule by making a selection below. (Hint: Be sure to try rules 30, 110, and 190.) You can even pause the animation and create each successive generation one click at a time.</p>
-		<ul class="settings-group">
-			<li>
-				<span>Population: <span id="population"></span></span>
-			</li>
-			<li>
-				<label for="ruleset">Rule set:</label>
-				<select name="ruleset" id="ruleset">
-				</select>
-				<span id="rs"></span>
-			</li>
-			<li>
-				<label for="frSetting">Speed:</label>
-				<input type="range" id="frSetting" name="frSetting" min="1" max="20" step="1" value="10">
-			</li>
-			<li>
-				<label for="gridSetting">Grid:</label>
-				<input type="checkbox" id="gridSetting" name="gridSetting" checked>
-			</li>
-		</ul>
+---
+layout: default
+title: One-Dimensional Cellular Automaton
+onload: initDoc()
+tab: One-Dimensional
+---
 
-		<div id="canvasContainer"></div>
-		<div class="center">
-			<button id="step" disabled>Next Generation</button>
-			<button id="reset">Reset</button>
-			<button id="pause">Pause</button>
-			<button id="resume" disabled>Resume</button>
-			<button id="saveCA">Save as image</button>
-		</div>
-	</div>
-	<div id="footer">
-		<p>CA Maker uses the <a href="https://p5js.org/" target="_blank">p5.js</a> JavaScript library.</p>
-		<p>To learn more about implementing cellular automata in code, check out <a href="https://natureofcode.com/book/" target="_blank">The Nature of Code</a>, by Daniel Shiffman.</p>
-	</div>
-</body>
-</html>
+<p>In the animation below, each row represents one "generation" of a <a href="{{ "/about.html" | relative_url }}">cellular automaton</a>. There are 256 ways different rules that govern the way such a CA can change from one generation to the next, and they're numbered 0-255. Change the rule by making a selection below, or just click "Start" to see what Rule 90 is like. You can also add each new generation one at a time by clicking "Next Generation."</p>
+<p>Some rules produce more interesting patterns than others. Be sure to try rules 62, 102, 149, and 225. Can you find any other interesting ones?</p>
+<ul class="settings-group">
+	<li>
+		<span>Population: <span id="population"></span></span>
+	</li>
+	<li>
+		<label for="ruleset">Rule set: </label>
+		<select name="ruleset" id="ruleset"></select>
+	</li>
+	<li>
+		<label for="initState">Initial state: </label>
+		<select name="initState" id="initState">
+			<option value="middleSeed">Middle cell</option>
+			<option value="random">Random</option>
+		</select>
+	<li>
+		<label for="frSetting">Speed: </label>
+		<input type="range" id="frSetting" name="frSetting" min="1" max="20" step="1" value="10">
+	</li>
+	<li>
+		<label for="gridSetting">Grid: </label>
+		<input type="checkbox" id="gridSetting" name="gridSetting" checked>
+	</li>
+</ul>
+<div id="currentRule"></div>
+<div id="canvasContainer"></div>
+<div class="center">
+	<button id="start">Start</button>
+	<button id="step" disabled>Next Generation</button>
+	<button id="stop">Stop</button>
+	<button id="reset">Reset</button>
+	<button id="saveCA">Save as image</button>
+</div>

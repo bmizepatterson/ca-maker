@@ -1,0 +1,22 @@
+<div class="header">
+	<div class="site-info">
+		<span class="site-name"><a href="{{ "/" | relative_url }}">CA Maker</a></span>
+		<ul>
+			<li><a href="https://github.com/bmizepatterson/ca-maker">GitHub</a></li>
+			<li><a href="{{ "/about.html" | relative_url }}">About</a></li>
+		</ul>
+	</div>
+	{%- if page.show-nav -%}
+		<ul class="nav">
+
+			{%- for p in site.pages -%}
+			  	{%- if p.tab -%}
+			  		{%- if p.tab == page.tab -%}<li class="active">{%- else -%}<li>{%- endif -%}
+			  			<a href="{{ p.url | relative_url }}">{{ p.tab }}</a>
+			  		</li>
+				{%- endif -%}
+			{%- endfor -%}
+		  	
+		</ul>
+	{%- endif -%}
+</div>

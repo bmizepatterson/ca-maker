@@ -1,0 +1,160 @@
+html, body {
+	margin:0;
+	padding:0;
+	font-family:Lato,Verdana,sans-serif;
+	font-size:16px;
+	line-height:1.5;
+	background-color:#EFEFEF;
+}
+button {
+	background:white;
+	outline:none;
+	border:1px solid black;
+	border-radius: 2px;
+	font-size:inherit;
+	padding:4px 8px;
+	margin:4px;
+}
+button:hover {
+	background:#046380;
+	color:white;
+}
+button[disabled]:hover {
+	background:white;
+	color:graytext;
+}
+button:active {
+	transform:translateY(1px);
+}
+input[type="checkbox"] {
+	font-size: inherit;
+    vertical-align: text-top;
+}
+select {
+	font-family: inherit;
+	font-size: inherit;
+}
+#currentRule {
+	margin-bottom:16px;
+}
+#footer {
+	margin-top:2rem;
+	padding: 8px;
+	font-size: 12px;
+}
+#footer p {
+	margin:0;
+}
+#rs {
+	font-size:14px;
+}
+.bar {
+	background-color: #046380;
+    color: white;
+    padding-left: 8px;
+    height:48px;
+    position:relative;
+}
+.bar h1 {
+	margin:0;
+}
+.header .site-name a, .header .site-name a:visited, .header .site-name a:hover {
+	color: inherit;
+	text-decoration: inherit;
+}
+.header {
+	padding-top: 8px;
+	background-color:white;
+	font-size: 14px;
+	height:21px;
+}
+.header p {
+	margin:-4px 0 0 16px;
+	float:left;
+}
+.header a {
+	color:black;
+	text-decoration: none;
+}
+.header a:hover {
+	text-decoration: underline;
+}
+.info {
+	font-size: 1.2rem;
+	line-height: 1.75;
+    margin:0;
+}
+.nav {
+	padding:0;
+	margin:0 8px 0 0;
+	text-align:right;
+}
+.nav li {
+	display: inline-block;
+	padding: 0 16px;	
+	border-top-right-radius: 16px 100%;
+	border-top-left-radius: 16px 100%;
+	background-color: white;
+    border-top: 1px solid #046380;
+    border-left: 1px solid #046380;
+    border-right: 1px solid #046380;
+}
+.nav li.active {
+	background-color: #046380;
+}
+li.active a, li.active a:hover {
+	color:white;
+}
+.nav a, .nav a:hover {
+	color:#046380;
+}
+.center {
+	text-align:center;
+}
+.container {
+	padding:0 16px;
+}
+.p5Canvas, #currentRule canvas {
+	display:block;
+	margin:auto;	
+}
+.p5Canvas {
+	border:1px solid #DDD;
+	background-color:white;
+}
+.settings-group {
+	padding:0;
+}
+.settings-group li {
+	display:inline;
+	padding-right:3rem;
+	line-height: 2rem;
+}
+.site-info {
+	font-size: 12px;
+	padding-left:16px;
+}
+.site-info ul {
+	float:left;
+	margin:0;
+	padding:0;
+}
+.site-info li {
+	display: inline-block;
+	margin-right: 6px;
+}
+.site-name {
+	float:left;
+	color: #046380;
+	font-size:16px;
+	font-weight:bold;
+	font-variant: small-caps;
+	padding-right:16px;
+	margin-top:-5px;
+}
+@media only screen and (min-width:600px) {
+	.info {
+    	margin-left: 15%;
+    	margin-right: 15%;
+    }
+}
