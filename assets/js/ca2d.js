@@ -6,6 +6,8 @@ function setup() {
     let dimensions = getCanvasSize(document.getElementById('canvasContainer').clientWidth, 350, cellSize);
     let canvas = createCanvas(dimensions.width, dimensions.height);
     canvas.parent('canvasContainer');
+    canvas.mouseClicked(initCells);
+    canvas.touchEnded(initCells);
     stroke(230);
     frameRate(2);
 }
