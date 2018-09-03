@@ -13,9 +13,8 @@ function setup() {
 function draw() {
     background(255);
     for (let r = 0; r < board.length; r++) {
-        let boardRow = board[r];
-        for (let c = 0; c < boardRow.length; c++) {
-            if (boardRow[c] == 0) fill(255);
+        for (let c = 0; c < board[r].length; c++) {
+            if (board[r][c] == 0) fill(255);
             else fill(0);
             rect(c * cellSize, r * cellSize, cellSize, cellSize);
         }
@@ -30,11 +29,11 @@ function initCells() {
     // document.getElementById('population').innerHTML = columns * rows;
 
     for (let r = 0; r < rows; r++) {
-        let boardRow = [];
+        board[r] = [];
         for (let c = 0; c < columns; c++) {
-            boardRow.push(Math.floor(Math.random() * 2));
+            board[r].push(Math.floor(Math.random() * 2));
         }
-        board.push(boardRow);
+        board.push(board[r]);
     }
 }
 
@@ -49,8 +48,7 @@ function beget() {
     }
     // Skip edge cells for now
     for (let r = 1; r < board.length - 1; r++) {
-        let boardRow = board[r];
-        for (let c = 1; c < boardRow.length - 1; c++) {
+        for (let c = 1; c < board[r].length - 1; c++) {
             // Calculate the new state for this cell by examining its neighbors
             let neighbors = 0;
             for (let i = -1; i <= 1; i++) {
@@ -59,7 +57,7 @@ function beget() {
                 }
             }
             // Don't include the current cell among its neighbors
-            neighbors -= boardRow[c];
+            neighbors -= board[r][c];
             if ((board[r][c] == 1) && (neighbors <  2)) {
                 next[r][c] = 0;
             } else if ((board[r][c] == 1) && (neighbors >  3)) {
