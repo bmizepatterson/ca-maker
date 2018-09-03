@@ -7,6 +7,7 @@ function setup() {
     let canvas = createCanvas(dimensions.width, dimensions.height);
     canvas.parent('canvasContainer');
     stroke(230);
+    frameRate(2);
 }
 
 function draw() {
@@ -19,6 +20,7 @@ function draw() {
             rect(c * cellSize, r * cellSize, cellSize, cellSize);
         }
     }
+    beget();
 }
 
 function initCells() {
@@ -33,6 +35,42 @@ function initCells() {
         }
         board.push(boardRow);
     }
+}
+
+function beget() {
+    // Initialize a blank copy of the board
+    let next = [];
+    for (let x = 0; x < board.length; x++) {
+        next[x] = [];
+        for (let y = 0; y < board[0].length; y++) {
+            next[x][y] = 0;
+        }
+    }
+    // Skip edge cells for now
+    for (let r = 1; r < board.length - 1; r++) {
+        let boardRow = board[r];
+        for (let c = 1; c < boardRow.length - 1; c++) {
+            // Calculate the new state for this cell by examining its neighbors
+            let neighbors = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    neighbors += board[r+i][c+j]
+                }
+            }
+            // Don't include the current cell among its neighbors
+            neighbors -= boardRow[c];
+            if ((board[r][c] == 1) && (neighbors <  2)) {
+                next[r][c] = 0;
+            } else if ((board[r][c] == 1) && (neighbors >  3)) {
+                next[r][c] = 0;
+            } else if ((board[r][c] == 0) && (neighbors == 3)) {
+                next[r][c] = 1;
+            } else {
+                next[r][c] = board[r][c];
+            }
+        }
+    }
+    board = next;
 }
 
 function initDoc() {
