@@ -79,8 +79,11 @@ function initDoc() {
 }
 
 function windowResized() {
-    clear();
     let size = getCanvasSize(document.getElementById('canvasContainer').clientWidth, 350, cellSize);
-    resizeCanvas(size.width, size.height);
-    initCells();
+    // Only resize the canvas if the width has changed
+    if (size.width !== width) {
+        clear();
+        resizeCanvas(size.width, size.height);
+        initCells();
+    }
 }
