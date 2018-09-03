@@ -24,6 +24,7 @@ function draw() {
 }
 
 function initCells() {
+    board = [];
     let columns = Math.floor(width / cellSize);
     let rows    = Math.floor(height / cellSize);
     // document.getElementById('population').innerHTML = columns * rows;
@@ -74,5 +75,12 @@ function beget() {
 }
 
 function initDoc() {
+    initCells();
+}
+
+function windowResized() {
+    clear();
+    let size = getCanvasSize(document.getElementById('canvasContainer').clientWidth, 350, cellSize);
+    resizeCanvas(size.width, size.height);
     initCells();
 }
