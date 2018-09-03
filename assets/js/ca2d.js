@@ -26,7 +26,7 @@ function draw() {
 function initCells() {
     let columns = Math.floor(width / cellSize);
     let rows    = Math.floor(height / cellSize);
-    document.getElementById('population').innerHTML = columns * rows;
+    // document.getElementById('population').innerHTML = columns * rows;
 
     for (let r = 0; r < rows; r++) {
         let boardRow = [];
