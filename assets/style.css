@@ -52,21 +52,26 @@ select {
 	background-color: #046380;
     color: white;
     padding-left: 8px;
-    height:48px;
+    min-height:48px;
     position:relative;
 }
 .bar h1 {
 	margin:0;
+}
+.center {
+	text-align:center;
+}
+.container {
+	padding:0 16px;
 }
 .header .site-name a, .header .site-name a:visited, .header .site-name a:hover {
 	color: inherit;
 	text-decoration: inherit;
 }
 .header {
-	padding-top: 8px;
 	background-color:white;
 	font-size: 14px;
-	height:21px;
+	min-height:24px;
 }
 .header p {
 	margin:-4px 0 0 16px;
@@ -85,7 +90,7 @@ select {
     margin:0;
 }
 .nav {
-	padding:0;
+	padding:2px 0 0 0;
 	margin:0 8px 0 0;
 	text-align:right;
 }
@@ -108,12 +113,6 @@ li.active a, li.active a:hover {
 .nav a, .nav a:hover {
 	color:#046380;
 }
-.center {
-	text-align:center;
-}
-.container {
-	padding:0 16px;
-}
 .p5Canvas, #currentRule canvas {
 	display:block;
 	margin:auto;	
@@ -131,12 +130,13 @@ li.active a, li.active a:hover {
 	line-height: 2rem;
 }
 .site-info {
+	float:none;
 	font-size: 12px;
 	padding-left:16px;
 }
 .site-info ul {
-	float:left;
-	margin:0;
+	float:right;
+	margin:5px 0 0 0;
 	padding:0;
 }
 .site-info li {
@@ -144,17 +144,16 @@ li.active a, li.active a:hover {
 	margin-right: 6px;
 }
 .site-name {
-	float:left;
 	color: #046380;
 	font-size:16px;
 	font-weight:bold;
 	font-variant: small-caps;
 	padding-right:16px;
-	margin-top:-5px;
 }
 @media only screen and (min-width:600px) {
 	.info {
     	margin-left: 15%;
     	margin-right: 15%;
     }
+    .site-info {float:left;}
 }
