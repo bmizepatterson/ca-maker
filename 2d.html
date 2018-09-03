@@ -6,12 +6,16 @@ js: assets/js/ca2d.js
 onload: initDoc()
 ---
 
-<p>The grid below shows a two-dimensional cellular automaton. As time passes, the state of each cell (either black or white) will change depending on how many black cells are next to it. You can think of the black cells as "alive" and the white cells as "dead." There are four rules that govern how their states change over time:<p>
+<p>The grid below shows a two-dimensional cellular automaton. As time passes, the state of each cell (either black or white) will change depending on how many black cells are next to it. You can think of the black cells as "alive" and the white cells as "dead." Here are the rules that govern how their states change over time:<p>
     <ol>
-        <li>Any live cell with fewer than two live neighbors dies, as if by under population.</li>
-        <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
-        <li>Any live cell with more than three live neighbors dies, as if by overpopulation.</li>
-        <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+        <li>A cell will die (i.e. turn from black to white) if it has:
+            <ul>
+                <li>fewer than two living neighbors.</li>
+                <li>more than three living neighbors.</li>
+            </ul>
+        </li>
+        <li>A cell will be born (i.e. turn from white to black) if it has exactly three living neighbors.</li>
+        <li>Otherwise the cell will stay the same.</li>
     </ol>
 <p>This kind of CA is also known as the "Game of Life." You can learn more about it <a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target="_blank">here</a>.</p>
 <ul class="settings-group">
