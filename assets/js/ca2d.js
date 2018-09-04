@@ -83,6 +83,7 @@ function initDoc() {
     document.getElementById('start').onclick = start;
     document.getElementById('saveCA').onclick = saveCA;
     initCells();
+    redraw();
 }
 
 function windowResized() {
@@ -100,6 +101,7 @@ function reset() {
     noLoop();
     looping = false;
     initCells();
+    redraw();
     document.getElementById('stop').disabled = true;
     document.getElementById('start').disabled = false;
     document.getElementById('step').disabled = false;
