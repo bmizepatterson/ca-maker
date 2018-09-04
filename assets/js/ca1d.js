@@ -196,7 +196,6 @@ function updateInitState() {
 function initDoc() {
 	// Add event listeners
 	document.getElementById('step').onclick = step;
-	// document.getElementById('step').addEventListener('click', step);
 	document.getElementById('reset').onclick = reset;
 	document.getElementById('stop').onclick = stop;
 	document.getElementById('start').onclick = start;

@@ -10,6 +10,7 @@ function setup() {
     canvas.touchEnded(initCells);
     stroke(230);
     frameRate(2);
+    noLoop();
 }
 
 function draw() {
@@ -75,6 +76,12 @@ function beget() {
 }
 
 function initDoc() {
+    // Add event listeners
+    document.getElementById('step').onclick = step;
+    document.getElementById('reset').onclick = reset;
+    document.getElementById('stop').onclick = stop;
+    document.getElementById('start').onclick = start;
+    document.getElementById('saveCA').onclick = saveCA;
     initCells();
 }
 
@@ -87,3 +94,38 @@ function windowResized() {
         initCells();
     }
 }
+
+function reset() {
+    clear();
+    noLoop();
+    looping = false;
+    initCells();
+    document.getElementById('stop').disabled = true;
+    document.getElementById('start').disabled = false;
+    document.getElementById('step').disabled = false;
+}
+
+function step() {
+    redraw();
+}
+
+function stop() {
+    noLoop();
+    looping = false;
+    document.getElementById('stop').disabled = true;
+    document.getElementById('start').disabled = false;
+    document.getElementById('step').disabled = false;
+}
+
+function start() {
+    loop();
+    looping = true;
+    document.getElementById('stop').disabled = false;
+    document.getElementById('start').disabled = true;
+    document.getElementById('step').disabled = true;
+}
+
+function saveCA() {
+    saveCanvas('myAutomaton', 'png');
+}
+
