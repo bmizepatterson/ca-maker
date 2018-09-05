@@ -27,16 +27,17 @@ function draw() {
 
 function initCells() {
     board = [];
-    let columns = Math.floor(width / cellSize);
+    // Width and height are guarranteed to be evenly divisible by cellSize
     let rows    = Math.floor(height / cellSize);
-    // document.getElementById('population').innerHTML = columns * rows;
+    let columns = Math.floor(width / cellSize);
+    document.getElementById('rowCount').innerHTML = rows;
+    document.getElementById('colCount').innerHTML = columns;
 
     for (let r = 0; r < rows; r++) {
         board[r] = [];
         for (let c = 0; c < columns; c++) {
             board[r].push(Math.floor(Math.random() * 2));
         }
-        board.push(board[r]);
     }
 }
 
